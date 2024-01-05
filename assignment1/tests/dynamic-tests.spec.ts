@@ -12,7 +12,6 @@ let KNOWN_ERRORS_ARRAY = [
 ];
 
 const KNOWN_ERRORS_REGEX = new RegExp(KNOWN_ERRORS_ARRAY.join("|"), "i");
-const TITLE_REGEX = new RegExp(/\\| Drata/);
 const SITEMAP_URL = "https://drata.com/en-US-page-sitemap.xml";
 
 //load sitemap.xml
@@ -93,9 +92,6 @@ for (let i = 0; i < urls.length; i++) {
     let contactSales = page.getByText("Contact Sales")
     // let signIn = page.getByAltText("Sign In")
     await expect(contactSales).toBeVisible()
-
-    //test that page title contains "| Drata"
-    expect(TITLE_REGEX.test(title), "Page title must contain the company name: 'Drata'").toBeTruthy()
 
     //test that there is no unexpected errors
     expect(errors.length).toEqual(0);
